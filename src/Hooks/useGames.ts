@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ApiClient from "../Service/ApiClient";
 import { CanceledError } from "axios";
+import useData from "./useData";
 
 export interface platform{
     id:number;
@@ -16,11 +17,11 @@ export interface Game {
   metacritic:number;
 }
 
-interface FetchGamesResponse {
-  count: number;
-  results: Game[];
-}
-const useGames=()=>{
+// interface FetchGamesResponse {
+//   count: number;
+//   results: Game[];
+// }
+/*const useGames=()=>{
 const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   const [isLoading,setLoading]=useState(false);
@@ -43,6 +44,7 @@ const [games, setGames] = useState<Game[]>([]);
     return ()=> controller.abort();
   },[]);
   return {games,error,isLoading}
-}
+}*/
+ const useGames=()=> useData<Game>('/games')
 
 export default useGames;
