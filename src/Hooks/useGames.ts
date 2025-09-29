@@ -46,6 +46,11 @@ const [games, setGames] = useState<Game[]>([]);
   },[]);
   return {games,error,isLoading}
 }*/
- const useGames=(selectedGenre:Genre|null)=> useData<Game>('/games',{params:{genres:selectedGenre?.id}},[selectedGenre?.id])
+ const useGames=(selectedGenre:Genre|null,selectedPlatform:platform|null)=> useData<Game>('/games',{
+  params:{
+    genres:selectedGenre?.id,platform:selectedPlatform?.id
+  }},
+  [selectedGenre?.id,
+    selectedPlatform?.id])
 
 export default useGames;
