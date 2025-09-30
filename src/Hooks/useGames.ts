@@ -3,6 +3,7 @@ import ApiClient from "../Service/ApiClient";
 import { CanceledError } from "axios";
 import useData from "./useData";
 import { Genre } from "./useGenres";
+import { GameQuery } from "../App";
 
 export interface platform{
     id:number;
@@ -46,11 +47,10 @@ const [games, setGames] = useState<Game[]>([]);
   },[]);
   return {games,error,isLoading}
 }*/
- const useGames=(selectedGenre:Genre|null,selectedPlatform:platform|null)=> useData<Game>('/games',{
+ const useGames=(gameQuery:GameQuery)=> useData<Game>('/games',{
   params:{
-    genres:selectedGenre?.id,platform:selectedPlatform?.id
+    genres:gameQuery.genre?.id,platform:gameQuery.platform?.id
   }},
-  [selectedGenre?.id,
-    selectedPlatform?.id])
+  [gameQuery])
 
 export default useGames;
