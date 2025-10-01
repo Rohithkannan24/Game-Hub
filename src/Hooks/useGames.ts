@@ -4,6 +4,7 @@ import { CanceledError } from "axios";
 import useData from "./useData";
 import { Genre } from "./useGenres";
 import { GameQuery } from "../App";
+import { Search } from "zcatalyst-sdk-node/lib/search/search";
 
 export interface platform{
     id:number;
@@ -49,7 +50,7 @@ const [games, setGames] = useState<Game[]>([]);
 }*/
  const useGames=(gameQuery:GameQuery)=> useData<Game>('/games',{
   params:{
-    genres:gameQuery.genre?.id,platform:gameQuery.platform?.id,ordering:gameQuery.sortOrder
+    genres:gameQuery.genre?.id,platform:gameQuery.platform?.id,ordering:gameQuery.sortOrder,search:gameQuery.searchText
   }},
   [gameQuery])
 
